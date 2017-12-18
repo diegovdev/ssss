@@ -1,10 +1,10 @@
-package engine.model;
+package engine.model.entity;
 
 public class Student {
 
-	private int id;
-	private String name;
-	private String email;
+	protected int id;
+	protected String name;
+	protected String email;
 
 	public int getId() {
 		return id;

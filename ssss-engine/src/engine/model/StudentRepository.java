@@ -3,6 +3,8 @@ package engine.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import engine.model.entity.Student;
+
 
 public class StudentRepository {
 
