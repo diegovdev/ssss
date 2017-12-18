@@ -15,15 +15,6 @@ public class StudentRepository {
 		return _instance;
 	}
 
-	public Student getStudent(int id) {
-		Student student = new Student();
-		student.setId(id);
-		student.setName("Alessandro Nesta");
-		student.setEmail("ale@milanello.com");
-
-		return student;
-	}
-
 	public List<Student> getAll() {
 		Student ale = new Student();
 		ale.setId(1);
@@ -53,4 +44,29 @@ public class StudentRepository {
 
 		return results;
 	}
+
+	public Student getStudent(int id) {
+		Float a = (float) (1/0);
+		Student student = new Student();
+		student.setId(id);
+		student.setName("Alessandro Nesta");
+		student.setEmail("ale@milanello.com");
+
+		return student;
+	}
+
+	public boolean createStudent(Student s) {
+		Float a = (float) (1/0);
+		return true;
+	}
+
+	public boolean updateStudent(int id, Student s) {
+		Float a = (float) (1/0);
+		return true;
+	}
+
+	public boolean deleteStudent(int id) {
+		Float a = (float) (1/0);
+		return true;
+	}	
 }
