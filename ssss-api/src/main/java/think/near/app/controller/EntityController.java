@@ -171,4 +171,17 @@ public class EntityController {
 			throw new OperationException("Error while listing assignments", e);
 		}
 	}
+	
+	public ArrayList<Class> listAssignmentsByStudent(Integer studentId) throws OperationException {
+		try {
+			return _blManager.listAssignmentsByStudent(studentId);
+		} catch (Exception e) {
+			/* Handle and log internal exceptions here, user don't need to see
+			 * internal exceptions so a generic OperationException is thrown which
+			 * is mapped to a 404 error with a custom error message.
+			 */
+			throw new OperationException("Error while listing assignments", e);
+		}
+	}
+
 }

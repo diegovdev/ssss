@@ -125,14 +125,17 @@ public class DataStore {
 
 
 	public boolean assignStudentToClass(Integer studentId, String classCode) {
+		System.console().writer().println("assigning student: " + studentId + " to class: " + classCode);
 		//add to _lookupClassesByStudentId
-		if(!this._assignmentsByStudentId.containsKey(studentId))
+		if(!this._assignmentsByStudentId.containsKey(studentId)) {
 			this._assignmentsByStudentId.put(studentId, new ArrayList<String>());
+		}
 		this._assignmentsByStudentId.get(studentId).add(classCode);
 
 		//add to _lookupStudentsByClassCode
-		if(!this._assignmentsByClassCode.containsKey(classCode))
+		if(!this._assignmentsByClassCode.containsKey(classCode)) {
 			this._assignmentsByClassCode.put(classCode, new ArrayList<Integer>());
+		}
 		this._assignmentsByClassCode.get(classCode).add(studentId);
 
 		return true;
@@ -159,8 +162,10 @@ public class DataStore {
 	public ArrayList<Student> queryAssignmentsByClassCode(String classCode) {
 		ArrayList<Integer> studentIds = this._assignmentsByClassCode.get(classCode);
 		ArrayList<Student> resultList = new ArrayList<Student>();
-		for (Integer studentId : studentIds) {
-			resultList.add(this._lookupStudentById.get(studentId));
+		if (studentIds != null) {
+			for (Integer studentId : studentIds) {
+				resultList.add(this._lookupStudentById.get(studentId));
+			}
 		}
 		return resultList;
 	}
@@ -168,8 +173,10 @@ public class DataStore {
 	public ArrayList<Class> queryAssignmentsByStudentId(Integer studentId) {
 		ArrayList<String> classCodes = this._assignmentsByStudentId.get(studentId);
 		ArrayList<Class> resultList = new ArrayList<Class>();
-		for (String classCode : classCodes) {
-			resultList.add(this._lookupClassByCode.get(classCode));
+		if (classCodes != null) {
+			for (String classCode : classCodes) {
+				resultList.add(this._lookupClassByCode.get(classCode));
+			}
 		}
 		return resultList;
 	}	

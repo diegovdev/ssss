@@ -120,5 +120,12 @@ public class BusinessLogicManager {
 		 */
 		return _dataStore.queryAssignmentsByClassCode(classCode);
 	}
+	
+	public ArrayList<Class> listAssignmentsByStudent(Integer studentId) {
+		/*
+		 * do some logic here and at some point calling database
+		 */
+		return _dataStore.queryAssignmentsByStudentId(studentId);
+	}
 }
 
