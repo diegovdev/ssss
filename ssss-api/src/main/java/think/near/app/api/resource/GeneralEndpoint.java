@@ -12,7 +12,7 @@ import think.near.app.controller.EntityController;
 import think.near.app.exception.OperationException;
 
 @Path("/")
-public class GeneralResource {
+public class GeneralEndpoint {
 
 	private static EntityController _studentController = EntityController.getInstance();
 

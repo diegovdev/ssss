@@ -16,7 +16,7 @@ import think.near.app.controller.EntityController;
 import think.near.app.exception.OperationException;
 
 @Path("/assign")
-public class AssignmentResource {
+public class AssignmentEndpoint {
 
 	private static EntityController _entityController = EntityController.getInstance();
 

@@ -19,7 +19,7 @@ import think.near.app.exception.OperationException;
 
 
 @Path("/student/")
-public class StudentResource {
+public class StudentEndpoint {
 
 	private EntityController _entityController = EntityController.getInstance();
 
