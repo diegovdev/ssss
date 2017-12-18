@@ -3,44 +3,54 @@ package engine.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class StudentRepository {
 
-    public static Student getStudent(int id) {
-        Student student = new Student();
-        student.setId(id);
-        student.setName("Alessandro Nesta");
-        student.setEmail("ale@milanello.com");
+	private static StudentRepository _instance = null;
 
-        return student;
-    }
+	public static StudentRepository getInstance() {
+		if(_instance == null) {
+			_instance = new StudentRepository();
+		}
+		return _instance;
+	}
 
-    public static List<Student> getAll() {
-        Student ale = new Student();
-        ale.setId(1);
-        ale.setName("Alessandro Nesta");
-        ale.setEmail("ale@milanello.com");
+	public Student getStudent(int id) {
+		Student student = new Student();
+		student.setId(id);
+		student.setName("Alessandro Nesta");
+		student.setEmail("ale@milanello.com");
 
-        Student diego = new Student();
-        diego.setId(2);
-        diego.setName("Andrea Pirlo");
-        diego.setEmail("andrea@milanello.com");
+		return student;
+	}
 
-        List<Student> students = new ArrayList<Student>();
-        students.add(ale);
-        students.add(diego);
+	public List<Student> getAll() {
+		Student ale = new Student();
+		ale.setId(1);
+		ale.setName("Alessandro Nesta");
+		ale.setEmail("ale@milanello.com");
 
-        return students;
-    }
+		Student diego = new Student();
+		diego.setId(2);
+		diego.setName("Andrea Pirlo");
+		diego.setEmail("andrea@milanello.com");
 
-    public static List<Student> findStudents(String query) {
-        List<Student> results = new ArrayList<Student>();
+		List<Student> students = new ArrayList<Student>();
+		students.add(ale);
+		students.add(diego);
 
-        for (Student student : getAll()) {
-            if (student.getName().toLowerCase().contains(query)) {
-                results.add(student);
-            }
-        }
+		return students;
+	}
 
-        return results;
-    }
+	public List<Student> findStudents(String query) {
+		List<Student> results = new ArrayList<Student>();
+
+		for (Student student : getAll()) {
+			if (student.getName().toLowerCase().contains(query)) {
+				results.add(student);
+			}
+		}
+
+		return results;
+	}
 }

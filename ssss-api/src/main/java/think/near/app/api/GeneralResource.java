@@ -14,14 +14,16 @@ import think.near.app.controller.StudentController;
 @Path("/")
 public class GeneralResource {
 
-    @GET
-    @Produces("application/json")
-    public List<Student> listAll(@QueryParam("q") String query) {
-        if (query == null || query.isEmpty()) {
-            return StudentController.getAll();
-        } else {
-            return StudentController.findStudents(query.toLowerCase());
-        }
-    }
+	private static StudentController _studentController = StudentController.getInstance();
+
+	@GET
+	@Produces("application/json")
+	public List<Student> listAll(@QueryParam("q") String query) {
+		if (query == null || query.isEmpty()) {
+			return _studentController.getAll();
+		} else {
+			return _studentController.findStudents(query.toLowerCase());
+		}
+	}
 
 }

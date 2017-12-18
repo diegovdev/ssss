@@ -15,33 +15,36 @@ import javax.ws.rs.core.Response;
 import engine.model.Student;
 import think.near.app.controller.StudentController;
 
+
 @Path("/student/")
 public class StudentResource {
 
-    @GET
-    @Produces("application/json")
-    public List<Student> listStudents(@QueryParam("q") String query) {
-        if (query == null || query.isEmpty()) {
-            return StudentController.getAll();
-        } else {
-            return StudentController.findStudents(query.toLowerCase());
-        }
-    }
+	private static StudentController _studentController = StudentController.getInstance();
 
-    @GET
-    @Path("/{id}")
-    @Produces("application/json")
-    public Student getStudent(@PathParam("id") int studentId) {
-        return StudentController.getStudent(studentId);
-    }
+	@GET
+	@Produces("application/json")
+	public List<Student> listStudents(@QueryParam("q") String query) {
+		if (query == null || query.isEmpty()) {
+			return _studentController.getAll();
+		} else {
+			return _studentController.findStudents(query.toLowerCase());
+		}
+	}
 
-    @PUT
-    @Path("/{id}")
-    @Consumes("application/json")
-    @Produces("text/plain")
-    public String putStudent(@PathParam("id") int studentId, Student c) {
-    	//Response r = Response.status(200).entity("yeah").build();
-        return "yeah " + studentId;
-    }
+	@GET
+	@Path("/{id}")
+	@Produces("application/json")
+	public Student getStudent(@PathParam("id") int studentId) {
+		return _studentController.getStudent(studentId);
+	}
+
+	@PUT
+	@Path("/{id}")
+	@Consumes("application/json")
+	@Produces("text/plain")
+	public String putStudent(@PathParam("id") int studentId, Student c) {
+		//Response r = Response.status(200).entity("yeah").build();
+		return "yeah " + studentId;
+	}
 
 }

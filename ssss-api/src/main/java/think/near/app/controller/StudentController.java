@@ -7,15 +7,25 @@ import engine.model.StudentRepository;
 
 public class StudentController {
 
-    public static Student getStudent(int id) {
-    	return StudentRepository.getStudent(id);
-    }
+	private static StudentRepository _studentRepository = StudentRepository.getInstance();
+	private static StudentController _instance = null;
 
-    public static List<Student> getAll() {
-    	return StudentRepository.getAll();
-    }
+	public static StudentController getInstance() {
+		if(_instance == null) {
+			_instance = new StudentController();
+		}
+		return _instance;
+	}
 
-    public static List<Student> findStudents(String query) {
-    	return StudentRepository.findStudents(query);
-    }
+	public Student getStudent(int id) {
+		return _studentRepository.getStudent(id);
+	}
+
+	public List<Student> getAll() {
+		return _studentRepository.getAll();
+	}
+
+	public List<Student> findStudents(String query) {
+		return _studentRepository.findStudents(query);
+	}
 }
