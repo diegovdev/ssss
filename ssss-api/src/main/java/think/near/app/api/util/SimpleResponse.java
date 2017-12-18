@@ -1,4 +1,4 @@
-package think.near.app.api;
+package think.near.app.api.util;
 
 public class SimpleResponse {
 	private String status;

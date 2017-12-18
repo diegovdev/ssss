@@ -1,4 +1,4 @@
-package think.near.app.api;
+package think.near.app.api.resource;
 
 import java.util.List;
 
@@ -12,7 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import engine.model.Student;
+import engine.model.entity.Student;
+import think.near.app.api.util.SimpleResponse;
 import think.near.app.controller.StudentController;
 import think.near.app.exception.OperationException;
 
@@ -64,5 +65,5 @@ public class StudentResource {
 		_studentController.deleteStudent(id);
 		return new SimpleResponse("success", "Deleted student with id " + id);
 	}
-	
+
 }
