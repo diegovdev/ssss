@@ -14,22 +14,22 @@ import javax.ws.rs.QueryParam;
 
 import engine.model.entity.Student;
 import think.near.app.api.util.SimpleResponse;
-import think.near.app.controller.StudentController;
+import think.near.app.controller.EntityController;
 import think.near.app.exception.OperationException;
 
 
 @Path("/student/")
 public class StudentResource {
 
-	private StudentController _studentController = StudentController.getInstance();
+	private EntityController _entityController = EntityController.getInstance();
 
 	@GET
 	@Produces("application/json")
-	public List<Student> listStudents(@QueryParam("q") String query) {
+	public List<Student> listStudents(@QueryParam("q") String query) throws OperationException {
 		if (query == null || query.isEmpty()) {
-			return _studentController.getAll();
+			return _entityController.getAllStudents();
 		} else {
-			return _studentController.findStudents(query.toLowerCase());
+			return _entityController.findStudents(query.toLowerCase());
 		}
 	}
 
@@ -37,7 +37,7 @@ public class StudentResource {
 	@Path("/{id}")
 	@Produces("application/json")
 	public Student getStudent(@PathParam("id") int studentId) throws OperationException {
-		return _studentController.getStudent(studentId);
+		return _entityController.getStudent(studentId);
 	}
 
 	@POST
@@ -45,7 +45,7 @@ public class StudentResource {
 	@Produces("application/json")
     @Consumes("application/json")
 	public Student createStudent(Student s) throws OperationException {
-		_studentController.createStudent(s);
+		_entityController.createStudent(s);
 		return s;
 	}
 
@@ -53,17 +53,25 @@ public class StudentResource {
 	@Path("/{id}")
 	@Produces("application/json")
     @Consumes("application/json")
-	public Student updateStudent(@PathParam("id") int id, Student s) throws OperationException {
-		_studentController.updateStudent(id, s);
-		return s;
+	public SimpleResponse updateStudent(@PathParam("id") int id, Student s) throws OperationException {
+		boolean success = _entityController.updateStudent(id, s);
+		if (success) {
+			return new SimpleResponse("updated", "Updated student with id " + id);
+		} else {
+			return new SimpleResponse("unmodified", "No student found with id " + id);
+		}
 	}
 
 	@DELETE
 	@Path("/{id}")
 	@Produces("application/json")
 	public SimpleResponse deleteStudent(@PathParam("id") int id) throws OperationException {
-		_studentController.deleteStudent(id);
-		return new SimpleResponse("success", "Deleted student with id " + id);
+		boolean success = _entityController.deleteStudent(id);
+		if (success) {
+			return new SimpleResponse("deleted", "Deleted student with id " + id);
+		} else {
+			return new SimpleResponse("unmodified", "No student found with id " + id);
+		}
 	}
 
 }

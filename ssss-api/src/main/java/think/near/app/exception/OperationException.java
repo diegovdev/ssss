@@ -9,7 +9,7 @@ public class OperationException extends Exception {
 		super("Error while executing requested operation");
 	}
  
-	public OperationException(String string) {
-		super(string);
+	public OperationException(String string, Exception innerex) {
+		super(string, innerex);
 	}
 }
