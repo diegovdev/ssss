@@ -198,7 +198,7 @@ public class DataStore {
 		Iterator<Class> iter = list.iterator();
 		while (iter.hasNext())  {
 			Class aclass = iter.next();
-			if(aclass.getCode() == classCode) {
+			if(aclass.getCode().equals(classCode)) {
 				iter.remove();
 			}
 		}
